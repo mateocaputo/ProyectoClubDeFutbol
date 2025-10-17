@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{% block titulo %} Club Atlético San Lorenzo de Almagro {% endblock  %}❤️💙</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        .hero-section {
+            /* Simulación de un fondo azul oscuro para el club */
+            background-color: #0d47a1; /* Azul oscuro similar a bg-primary */
+            background-image: url('https://via.placeholder.com/1920x600/0d47a1/FFFFFF?text=Estadio+del+Club');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Utiliza el color de Bootstrap 'danger' (rojo) para el borde de la tarjeta */
+        .card-border-danger {
+            border: 3px solid var(--bs-danger);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card-border-danger:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold fs-4 text-uppercase" href="#">
+                Club Atletico <span class="text-danger">San Lorenzo de Almagro</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="jugadores">⚽ Jugadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="patrocinadores">🤝 Patrocinadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="mobiliario">🏟️ Instalaciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-center text-white shadow-sm">
+        <div class="container">
+            <h1 class="display-1 fw-bolder">¡La Pasión Azulgrana!</h1>
+            <p class="lead mb-4 fs-4">Sigue toda la información de nuestro equipo, historia y proyectos.</p>
+            <a href="#jugadores" class="btn btn-danger btn-lg mx-2 fw-bold">Ver Plantilla</a>
+            <a href="#patrocinadores" class="btn btn-outline-light btn-lg mx-2 fw-bold">Conoce a nuestros Jugadores</a>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        
+        <section id="jugadores" class="py-5">
+            <h2 class="text-center mb-5 display-4 fw-bold text-primary">Nuestros <span class="text-danger">Jugadores</span></h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card card-border-danger h-100 text-center">
+                        <img src="https://via.placeholder.com/300x200/dc3545/FFFFFF?text=Jugador+1" class="card-img-top" alt="Jugador 1">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-primary">Nombre del Capitán</h5>
+                            <p class="card-text">Posición: Defensa</p>
+                            <span class="badge bg-danger fs-6">Dorsal: 4</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-border-danger h-100 text-center">
+                        <img src="https://via.placeholder.com/300x200/0d6efd/FFFFFF?text=Jugador+2" class="card-img-top" alt="Jugador 2">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-primary">Nombre del Goleador</h5>
+                            <p class="card-text">Posición: Delantero</p>
+                            <span class="badge bg-danger fs-6">Dorsal: 9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-border-danger h-100 text-center">
+                        <img src="https://via.placeholder.com/300x200/dc3545/FFFFFF?text=Jugador+3" class="card-img-top" alt="Jugador 3">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-primary">Nombre del Portero</h5>
+                            <p class="card-text">Posición: Portero</p>
+                            <span class="badge bg-danger fs-6">Dorsal: 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="my-5 border border-danger border-2 opacity-75">
+
+        <section id="patrocinadores" class="py-5 bg-light rounded shadow">
+            <div class="container">
+                <h2 class="text-center mb-5 display-4 fw-bold text-primary">Nuestros <span class="text-danger">Patrocinadores</span></h2>
+                <div class="row text-center align-items-center">
+                    <div class="col-md-3 mb-4">
+                        <img src="https://via.placeholder.com/150x80/0d6efd/FFFFFF?text=Sponsor+A" class="img-fluid opacity-75" alt="Patrocinador A">
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <img src="https://via.placeholder.com/150x80/dc3545/FFFFFF?text=Sponsor+B" class="img-fluid opacity-75" alt="Patrocinador B">
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <img src="https://via.placeholder.com/150x80/0d6efd/FFFFFF?text=Sponsor+C" class="img-fluid opacity-75" alt="Patrocinador C">
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <img src="https://via.placeholder.com/150x80/dc3545/FFFFFF?text=Sponsor+D" class="img-fluid opacity-75" alt="Patrocinador D">
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="#" class="btn btn-outline-primary">¡Únete a la Familia!</a>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-5 border border-danger border-2 opacity-75">
+
+        <section id="mobiliario" class="py-5">
+            <h2 class="text-center mb-5 display-4 fw-bold text-primary">Nuestras <span class="text-danger">Instalaciones</span></h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <img src="https://via.placeholder.com/800x450/0d6efd/FFFFFF?text=Estadio+Principal" class="img-fluid rounded shadow-lg border border-primary border-4" alt="Estadio">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-primary">El Templo del Deporte</h3>
+                    <p class="lead">Nuestra casa, un lugar lleno de historia y pasión. Un moderno complejo diseñado para la mejor experiencia.</p>
+                    <ul class="list-group list-group-flush border-start border-danger border-3">
+                        <li class="list-group-item">Capacidad para más de 45.000 espectadores.</li>
+                        <li class="list-group-item">Gimnasio de alto rendimiento.</li>
+                        <li class="list-group-item">Salas de prensa y palcos VIP.</li>
+                    </ul>
+                    <a href="#" class="btn btn-danger mt-3">Ver Galería de Fotos</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center text-white p-4 bg-primary">
+        <div class="container">
+            <section class="mb-2">
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button">F</a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button">T</a>
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button">I</a>
+            </section>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2025 Club Deportivo:
+                <a class="text-white fw-bold" href="#">clubdeportivo.com</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
