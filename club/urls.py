@@ -1,9 +1,9 @@
 from django.urls import path
-from club.views import index, jugadores, patrocinadores, mobiliario
+from club.views import index, crearJugador, crearPatrocinador, crearMobiliario
 
 urlpatterns = [
     path("", index, name = "index"),
-    path("jugadores", jugadores, name = "jugadores"),
-    path("patrocinadores", patrocinadores, name = "patrocinadores"),
-    path("mobiliario", mobiliario, name = "mobiliario"),
+    path("jugadores", crearJugador, name = "jugadores_form"),
+    path("patrocinadores", crearPatrocinador, name = "patrocinadores_form"),
+    path("mobiliario", crearMobiliario, name = "mobiliarios_form"),
 ]
