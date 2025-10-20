@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from club.forms import *
+from club.models import *
 
 # Create your views here.
 def index(request):
@@ -18,7 +19,7 @@ def crearJugador(request):
         form = JugadoresForms(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("jugadores_form")
+            return redirect("jugadores_list")
     else:
         form = JugadoresForms()
     return render(request, "club/jugadores.html", {'form':form})
@@ -28,7 +29,7 @@ def crearPatrocinador(request):
         form = PatrocinadoresForms(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("patrocinadores_form")
+            return redirect("patrocinadores_list")
     else:
         form = PatrocinadoresForms()
     return render(request, "club/patrocinadores.html", {'form':form})
@@ -38,7 +39,34 @@ def crearMobiliario(request):
         form = MobiliarioForms(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("mobiliarios_form")
+            return redirect("mobiliario_list")
     else:
         form = MobiliarioForms()
     return render(request, "club/mobiliarios.html", {'form':form})
+
+def listar_jugadores(request):
+    query = request.GET.get('q', '')
+    if len(query) > 0:
+        jugadores = Jugadores.objects.filter(nombre__icontains = query).order_by("-apellido")
+    else:
+        jugadores = Jugadores.objects.all().order_by("-apellido")
+    
+    return render(request, "club/jugadores_list.html", {"jugadores": jugadores, "query":query})
+
+def listar_patrocinadores(request):
+    query = request.GET.get('q', '')
+    if len(query) > 0:
+        patrocinadores = Patrocinadores.objects.filter(nombre__icontains = query).order_by("-numero_interno")
+    else:
+        patrocinadores = Patrocinadores.objects.all().order_by("-numero_interno")
+    
+    return render(request, "club/patrocinadores_list.html", {"patrocinadores": patrocinadores, "query":query})
+
+def listar_mobiliario(request):
+    query = request.GET.get('q', '')
+    if len(query) > 0:
+        mobiliario = Mobiliario.objects.filter(nombre__icontains = query).order_by("-nombre")
+    else:
+        mobiliario = Mobiliario.objects.all().order_by("-nombre")
+    
+    return render(request, "club/mobiliario_list.html", {"mobiliario": mobiliario, "query":query})

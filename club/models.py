@@ -23,7 +23,7 @@ class Patrocinadores(models.Model):
     financiamiento = models.IntegerField()
     
     def __str__(self):
-        return f"Nombre: {self.nombre} - Fecha de fundacion: {self.fecha_fundacion}"
+        return f"Nombre: {self.nombre} - Fecha de incorporacion: {self.fecha_incorporacion}"
     
 
 class Mobiliario(models.Model):
