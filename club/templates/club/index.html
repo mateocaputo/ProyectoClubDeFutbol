@@ -48,13 +48,13 @@
                         <a class="nav-link active text-white" aria-current="page" href = {% url 'index' %}>🔴🔵Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="jugadores_busqueda">⚽ Jugadores</a>
+                        <a class="nav-link active text-white" aria-current="page" href={% url 'jugadores_list' %}>⚽ Jugadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="patrocinadores_busqueda">🤝 Patrocinadores</a>
+                        <a class="nav-link text-white" href={% url 'patrocinadores_list' %}>🤝 Patrocinadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="mobiliario_busqueda">🏟️ Mobiliario</a>
+                        <a class="nav-link text-white" href={% url 'mobiliario_list' %}>🏟️ Mobiliario</a>
                     </li>
                 </ul>
             </div>

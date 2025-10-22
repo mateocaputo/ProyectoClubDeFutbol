@@ -15,7 +15,12 @@
                         {{ form.as_p }}
                     </div>
 
-                    <div class="d-grid gap-2 mt-4">
+                    <div class="d-flex justify-content-between mt-4"> 
+                        
+                        <a href="{% url 'mobiliario_list' %}" class="btn btn-secondary btn-lg">
+                            Volver
+                        </a>
+                        
                         <button type="submit" class="btn btn-primary btn-lg">
                             Confirmar Registro
                         </button>
@@ -25,4 +30,4 @@
         </div>
     </div>
         
-{% endblock %}
+{% endblock contenido %}

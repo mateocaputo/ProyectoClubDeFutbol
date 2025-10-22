@@ -1,28 +1,33 @@
 {% extends "club/index.html" %}
 
-{% block titulo %} Gestión de jugadores del Club {% endblock titulo %}
+{% block titulo %} Gestión de mobiliario {% endblock titulo %}
 
 {% block contenido %}
 
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <h4 class="mb-4">Registro de Jugadores</h4>
-            <form method="POST">
-                {% csrf_token %}
-                
-                <div class="card p-4 shadow-sm">
-                    {{ form.as_p }}
-                </div>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h4 class="mb-4">Registro de Mobiliario</h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="card p-4 shadow-sm">
+                        {{ form.as_p }}
+                    </div>
 
-                <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        Confirmar Registro
-                    </button>
-                </div>
-            </form>
+                    <div class="d-flex justify-content-between mt-4"> 
+                        
+                        <a href="{% url 'jugadores_list' %}" class="btn btn-secondary btn-lg">
+                            Volver
+                        </a>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Confirmar Registro
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
-{% endblock %}
+        
+{% endblock contenido %}
