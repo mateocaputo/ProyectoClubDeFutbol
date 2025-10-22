@@ -45,6 +45,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href = {% url 'index' %}>🔴🔵Inicio</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active text-white" aria-current="page" href="jugadores_busqueda">⚽ Jugadores</a>
                     </li>
                     <li class="nav-item">
@@ -152,6 +155,14 @@
             </section>
         </main>
     {% endblock %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
     <footer class="text-center text-white p-4 bg-primary">
         <div class="container">
             <section class="mb-2">

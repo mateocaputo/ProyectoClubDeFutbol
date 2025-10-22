@@ -14,6 +14,17 @@ class JugadoresForms(forms.ModelForm):
             "dorsal" : forms.NumberInput(attrs = {'class': 'form-control'}),
             "apodo" : forms.TextInput(attrs = {'class': 'form-control'}),       
         }
+
+class JugadoresFormsEdit(forms.ModelForm):
+    class Meta:
+        model = Jugadores
+        fields = ["nombre", "apellido", "años", "apodo"]
+        widgets = {
+            "nombre" : forms.TextInput(attrs = {'class': 'form-control'}),
+            "apellido" : forms.TextInput(attrs = {'class': 'form-control'}),
+            "años" : forms.NumberInput(attrs = {'class': 'form-control'}),
+            "apodo" : forms.TextInput(attrs = {'class': 'form-control'}),       
+        }
         
 class PatrocinadoresForms(forms.ModelForm):
     class Meta:
@@ -25,13 +36,30 @@ class PatrocinadoresForms(forms.ModelForm):
             "fecha_incorporacion":forms.DateInput(attrs = {'type':'date', 'class': 'form-control'}),
             "financiamiento":forms.NumberInput(attrs = {'class': 'form-control'})
         }
+class PatrocinadoresFormsEdit(forms.ModelForm):
+    class Meta:
+        model = Patrocinadores
+        fields = ["nombre", "financiamiento"]
+        widgets = {
+            "nombre":forms.TextInput(attrs = {'class': 'form-control'}),
+            "financiamiento":forms.NumberInput(attrs = {'class': 'form-control'})
+        }
         
 class MobiliarioForms(forms.ModelForm):
     class Meta:
         model = Mobiliario
-        fields = ["nombre", "cantidad", "marca"]
+        fields = ["nombre", "cantidad", "marca", "numero_serie"]
         widgets = {
             "nombre":forms.TextInput(attrs = {'class': 'form-control'}),
             "cantidad":forms.NumberInput(attrs = {'class': 'form-control'}),
-            "marca":forms.TextInput(attrs = {'class': 'form-control'})
+            "marca":forms.TextInput(attrs = {'class': 'form-control'}),
+            "numero_serie":forms.NumberInput(attrs = {'class': 'form-control'})
+        }
+        
+class MobiliarioFormsEdit(forms.ModelForm):
+    class Meta:
+        model = Mobiliario
+        fields = ["cantidad"]
+        widgets = {
+            "cantidad":forms.NumberInput(attrs = {'class': 'form-control'}),
         }

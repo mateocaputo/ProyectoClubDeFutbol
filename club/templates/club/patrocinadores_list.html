@@ -71,6 +71,12 @@
                     <td>{{ patrocinador.nombre }}</td>
                     <td>{{ patrocinador.numero_interno }}</td>
                     <td>{{ patrocinador.financiamiento}}</td>
+                    <td>
+                        <a href="{% url 'modificar_patrocinador' patrocinador.numero_interno %}" class="btn btn-sm btn-warning">Modificar</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'eliminar_patrocinador' patrocinador.numero_interno %}" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
