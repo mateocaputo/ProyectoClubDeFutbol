@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from club.forms import *
 from club.models import *
-
+from django.views.generic import DetailView
 # Create your views here.
 def index(request):
     return render(request, "club/index.html")
@@ -131,4 +131,28 @@ def modificar_item(request, numero_serie):
     else:
         form = MobiliarioFormsEdit(instance = item) # Puedo cambiar el formulario para restringir datos
     return render(request, "club/mobiliarios.html", {'form':form, 'edicion':True})
+
+class JugadorDetailView(DetailView):
+    model = Jugadores
+    template_name = "club/jugador_detail.html"
+    context_object_name = "jugador"
+    slug_field = 'dni'
+    slug_url_kwarg = 'dni'
+    
+class PatrocinadorDetailView(DetailView):
+    model = Patrocinadores
+    template_name = "club/patrocinador_detail.html"
+    context_object_name = "patrocinador"
+    slug_field = 'numero_interno'
+    slug_url_kwarg = 'numero_interno'
+    
+class MobiliarioDetailView(DetailView):
+    model = Mobiliario
+    template_name = "club/mobiliario_detail.html"
+    context_object_name = "mobiliario"
+    slug_field = 'numero_serie'
+    slug_url_kwarg = 'numero_serie'
+
+
+
 

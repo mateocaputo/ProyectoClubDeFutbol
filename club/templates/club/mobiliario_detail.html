@@ -1,0 +1,36 @@
+
+{% extends "club/index.html" %}
+
+{% block titulo %}Mobiliario | Detalle de Registro{% endblock titulo %}
+
+{% block contenido %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <h1 class="text-center mb-5" style="color: var(--primary-color); font-weight: 700;">
+                Detalle del Mobiliario
+            </h1>
+            
+            <div class="card shadow-lg border-0">
+                <div class="card-header" style="background-color: var(--primary-color); color: black;">
+                    <h4 class="mb-0">{{ object.nombre }}</h4>
+                </div>
+                
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Cantidad:</strong> {{ object.cantidad }}</li>
+                        <li class="list-group-item"><strong>Marca:</strong> {{ object.marca }}</li>
+                        <li class="list-group-item"><strong>Numero de serie:</strong> {{ object.numero_serie }}</li>
+                    </ul>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{% url 'modificar_item' object.numero_serie %}" class="btn btn-warning shadow-sm">Editar</a>
+                    <a href="{% url 'mobiliario_list' %}" class="btn btn-secondary shadow-sm">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

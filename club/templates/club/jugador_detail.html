@@ -1,0 +1,39 @@
+
+{% extends "club/index.html" %}
+
+{% block titulo %}Jugador | Detalle de Registro{% endblock titulo %}
+
+{% block contenido %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <h1 class="text-center mb-5" style="color: var(--primary-color); font-weight: 700;">
+                Detalle del Jugador
+            </h1>
+            
+            <div class="card shadow-lg border-0">
+                <div class="card-header" style="background-color: var(--primary-color); color: black;">
+                    <h4 class="mb-0">{{ object.nombre }} {{ object.apellido }}</h4>
+                </div>
+                
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Nombre y Apellido:</strong> {{ object.nombre }} {{ object.apellido }}</li>
+                        <li class="list-group-item"><strong>DNI:</strong> {{ object.dni }}</li>
+                        <li class="list-group-item"><strong>Años:</strong> {{ object.años }}</li>
+                        <li class="list-group-item"><strong>Fecha de Nacimiento:</strong> {{ object.fecha_nacimiento }}</li>
+                        <li class="list-group-item"><strong>Dorsal:</strong> {{ object.dorsal }}</li>
+                        <li class="list-group-item"><strong>Fecha de contratacion:</strong> {{ object.fecha_contratacion }}</li>
+                    </ul>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{% url 'modificar_jugador' object.dni %}" class="btn btn-warning shadow-sm">Editar</a>
+                    <a href="{% url 'jugadores_list' %}" class="btn btn-secondary shadow-sm">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

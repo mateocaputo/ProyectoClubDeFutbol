@@ -1,0 +1,35 @@
+{% extends "club/index.html" %}
+
+{% block titulo %}Médicos | Registrar Nuevo{% endblock titulo %}
+
+{% block contenido %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <h1 class="text-center mb-5" style="color: var(--primary-color); font-weight: 700;">
+                Registrar Nuevo Médico
+            </h1>
+            
+            <div class="card p-4 shadow-lg border-0">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {{ form.as_p }}
+                    
+                    <div class="d-flex justify-content-between mt-4"> 
+                        
+                        <a href="{% url 'medicos_list' %}" class="btn btn-secondary btn-lg">
+                            Volver
+                        </a>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Confirmar Registro
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

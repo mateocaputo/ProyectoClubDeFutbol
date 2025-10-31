@@ -1,0 +1,35 @@
+
+{% extends "club/index.html" %}
+
+{% block titulo %}Jugador | Detalle de Patrocinador{% endblock titulo %}
+
+{% block contenido %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <h1 class="text-center mb-5" style="color: var(--primary-color); font-weight: 700;">
+                Detalle del Patrocinador
+            </h1>
+            
+            <div class="card shadow-lg border-0">
+                <div class="card-header" style="background-color: var(--primary-color); color: black;">
+                    <h4 class="mb-0">{{ object.nombre }}</h4>
+                </div>
+                
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Numero de interno:</strong> {{ object.numero_interno }}</li>
+                        <li class="list-group-item"><strong>Fecha de incorporacion:</strong> {{ object.fecha_incorporacion }}</li>
+                        <li class="list-group-item"><strong>Financiamiento:</strong> {{ object.financiamiento }}</li>                    </ul>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{% url 'modificar_patrocinador' object.numero_interno %}" class="btn btn-warning shadow-sm">Editar</a>
+                    <a href="{% url 'patrocinadores_list' %}" class="btn btn-secondary shadow-sm">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

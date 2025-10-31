@@ -34,4 +34,3 @@ class Mobiliario(models.Model):
     
     def __str__(self):
         return f"Nombre {self.nombre} - Cantidad: {self.cantidad} - Marca: {self.marca}"
-    
