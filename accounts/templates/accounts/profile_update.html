@@ -1,0 +1,110 @@
+{% extends 'club/index.html' %}
+
+{% load static %}
+<link rel="icon" type="image/png" href="media/san-lorenzo.ico">
+{% block titulo %}
+    Modificación de Perfil - CASLA 🏟️
+{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+            
+            <div class="card shadow-lg card-border-danger">
+                
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="mb-0 fw-bold">Modificar Socio</h2>
+                </div>
+                
+                <div class="card-body p-4">
+                    <h5 class="card-title text-center mb-4 text-primary">Modifica tu Cuenta Azulgrana 🔴🔵</h5>
+                    
+                    <form method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {# Campo: pais #}
+                        <div class="mb-3">
+                            <label for="{{ form.pais.id_for_label }}" class="form-label fw-bold">
+                                {{ form.pais.label }}
+                                {% if form.pais.field.required %}<span class="text-danger">*</span>{% endif %}
+                            </label>
+                            {{ form.pais }}
+                            {% for error in form.pais.errors %}
+                                <div class="invalid-feedback d-block text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        {# Campo: fecha_de_nacimiento #}
+                        <div class="mb-3">
+                            <label for="{{ form.fecha_de_nacimiento.id_for_label }}" class="form-label fw-bold">
+                                {{ form.fecha_de_nacimiento.label }}
+                                {% if form.fecha_de_nacimiento.field.required %}<span class="text-danger">*</span>{% endif %}
+                            </label>
+                            {{ form.fecha_de_nacimiento }}
+                            {% for error in form.fecha_de_nacimiento.errors %}
+                                <div class="invalid-feedback d-block text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        {# Campo: direccion #}
+                        <div class="mb-3">
+                            <label for="{{ form.direccion.id_for_label }}" class="form-label fw-bold">
+                                {{ form.direccion.label }}
+                                {% if form.direccion.field.required %}<span class="text-danger">*</span>{% endif %}
+                            </label>
+                            {{ form.direccion }}
+                            {% for error in form.direccion.errors %}
+                                <div class="invalid-feedback d-block text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        {# Campo: imagen_perfil (Manejo de FileField para Bootstrap) #}
+                        <div class="mb-3">
+                            <label for="{{ form.imagen_perfil.id_for_label }}" class="form-label fw-bold">
+                                {{ form.imagen_perfil.label }}
+                            </label>
+                            <div class="input-group">
+                                {{ form.imagen_perfil }}
+                            </div>
+                            
+                            {% if form.instance.imagen_perfil %}
+                                <div class="mt-2">
+                                    <p class="mb-1 small text-muted">Imagen actual:</p>
+                                    <img src="{{ form.instance.imagen_perfil.url }}" alt="Imagen de Perfil Actual" class="img-thumbnail" style="max-height: 100px;">
+                                    {{ form.imagen_perfil.url }}
+                                </div>
+                            {% endif %}
+                            
+                            {% for error in form.imagen_perfil.errors %}
+                                <div class="invalid-feedback d-block text-danger small">{{ error }}</div>
+                            {% endfor %}
+                            
+                            {% if form.imagen_perfil.help_text %}
+                                <div class="form-text">
+                                    {{ form.imagen_perfil.help_text }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-danger btn-lg fw-bold text-uppercase">
+                                Guardar Modificaciones
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

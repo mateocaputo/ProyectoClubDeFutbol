@@ -1,0 +1,39 @@
+{% extends 'club/index.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Sesión Cerrada - CASLA 🔴🔵
+{% endblock %}
+
+{% block contenido %}
+<div class="container my-5 py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+            
+            <div class="card text-center shadow-lg card-border-danger">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0 fw-bold">¡Hasta pronto!</h2>
+                </div>
+                
+                <div class="card-body p-5">
+                    <p class="card-text fs-5">
+                        Has cerrado tu sesión exitosamente.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Gracias por visitar el sitio del Club Atlético San Lorenzo de Almagro.
+                    </p>
+                    <a href="{% url 'index' %}" class="btn btn-danger btn-lg fw-bold text-uppercase">
+                        Volver al Inicio 🔴🔵
+                    </a>
+                </div>
+                
+                <div class="card-footer text-muted">
+                    Esperamos verte de nuevo pronto.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
