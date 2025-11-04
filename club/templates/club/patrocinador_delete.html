@@ -1,0 +1,49 @@
+{% extends 'club/index.html' %}
+
+{% block titulo %}
+    Confirmar Eliminación - CASLA ⚠️
+{% endblock %}
+
+{% block contenido %}
+<div class="container my-5 py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+            
+            <div class="card text-center shadow-lg card-border-danger">
+                
+                <div class="card-header bg-danger text-white">
+                    <h2 class="mb-0 fw-bold">Confirmar Eliminación</h2>
+                </div>
+                
+                <div class="card-body p-5">
+                    <h4 class="card-title mb-4 text-primary">
+                        ¿Estás seguro de que deseas eliminar este elemento?
+                    </h4>
+                    
+                    <p class="lead mb-4 fw-bold">
+                        Elemento a eliminar: 
+                        <span class="text-danger">"{{ object.nombre }} {{ object.numero_interno}}"</span>
+                    </p>
+                    
+                    <p class="text-muted small mb-4">
+                        Esta acción es irreversible. Si eliminas a este patrocinador, su registro se perderá permanentemente.
+                    </p>
+                    
+                    <form method="post" action="{% url 'eliminar_patrocinador' object.numero_interno %}">
+                        {% csrf_token %}
+
+                        <button type="submit" class="btn btn-danger btn-lg fw-bold text-uppercase me-3">
+                            Sí, Eliminar
+                        </button>
+
+                        <a href="{% url 'patrocinadores_list' %}" class="btn btn-primary btn-lg fw-bold text-uppercase">
+                            Cancelar
+                        </a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

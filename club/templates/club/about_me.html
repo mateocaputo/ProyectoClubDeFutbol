@@ -1,0 +1,93 @@
+{% extends 'club/index.html' %}
+
+{% block titulo %}
+    Acerca de Mí | CASLA 🏟️
+{% endblock %}
+
+{% block contenido %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            
+            <h1 class="text-center mb-5 display-4 fw-bold text-primary">
+                Sobre el Desarrollador <span class="text-danger">Azulgrana</span>
+            </h1>
+
+            <div class="card shadow-lg card-border-danger mb-5">
+                
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="mb-0 fw-bold">Datos Personales y Ubicación</h3>
+                </div>
+                
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-3 mb-md-0">
+                            <img src="" 
+                                 alt="Mi Avatar" 
+                                 class="img-fluid rounded-circle border border-danger border-3 shadow-sm" 
+                                 style="width: 150px; height: 150px; object-fit: cover;">
+                            <h4 class="mt-3 text-danger">Caputo Mateo Ezequiel</h4>
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <dl class="row fs-5">
+                                <dt class="col-sm-5 text-primary">Edad:</dt>
+                                <dd class="col-sm-7">22 años</dd>
+
+                                <dt class="col-sm-5 text-primary">Vivo en:</dt>
+                                <dd class="col-sm-7">Buenos Aires, Argentina</dd>
+
+                                <dt class="col-sm-5 text-primary">Intereses:</dt>
+                                <dd class="col-sm-7">Fútbol, Desarrollo Web, Django, Música (Megadet) </dd>
+                                
+                                <dt class="col-sm-5 text-primary">Club Favorito:</dt>
+                                <dd class="col-sm-7">¡San Lorenzo de Almagro! jeje</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-lg card-border-danger">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0 fw-bold text-center">Formación y Conocimientos</h3>
+                </div>
+                
+                <div class="card-body p-4">
+                    
+                    <h5 class="text-danger mb-3">Estudios Recientes</h5>
+                    <ul class="list-group list-group-flush border-start border-danger border-3 mb-4">
+                        <li class="list-group-item">
+                            Actualmente en la carrera de Ingeniería en Sistemas de Información (Universidad Tecnológica Nacional, 2022)
+                        </li>
+                        <li class="list-group-item">
+                            Curso Desarrollo con Python/Django
+                        </li>
+                        <li class="list-group-item">
+                            Técnico en Computación (2021)
+                        </li>
+                    </ul>
+
+                    <h5 class="text-danger mb-3">Habilidades Técnicas</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary fs-6">Python</span>
+                        <span class="badge bg-primary fs-6">Django</span>
+                        <span class="badge bg-primary fs-6">Bootstrap 5</span>
+                        <span class="badge bg-primary fs-6">HTML/CSS</span>
+                        <span class="badge bg-primary fs-6">SQL</span>
+                        <span class="badge bg-primary fs-6">Java</span>
+                        <span class="badge bg-primary fs-6">C++/C/C#</span>
+                        <span class="badge bg-danger fs-6">Git/GitHub</span>
+                    </div>
+
+                </div>
+                
+                <div class="card-footer text-center text-muted small">
+                    <p class="mb-0">Este proyecto fue desarrollado con pasión por el código y el CASLA. ¡Cualquier duda, contáctame!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

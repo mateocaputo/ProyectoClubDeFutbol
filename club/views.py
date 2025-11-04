@@ -3,7 +3,12 @@ from django.contrib import messages
 from club.forms import *
 from club.models import *
 from django.views.generic import DetailView
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+def about_me(request):
+    return render(request, "club/about_me.html")
+
 def index(request):
     return render(request, "club/index.html")
 
@@ -13,6 +18,7 @@ def patrocinadores(request):
 def mobiliario(request):
     return render(request, "club/mobiliarios.html")
 
+@login_required
 def crearJugador(request):
     # GET - Pedir info
     # POST - Solicitud para crear
@@ -28,6 +34,7 @@ def crearJugador(request):
     
     return render(request, "club/jugadores.html", {'form':form})
 
+@login_required
 def crearPatrocinador(request):
     if request.method == "POST":
         form = PatrocinadoresForms(request.POST)
@@ -39,6 +46,7 @@ def crearPatrocinador(request):
         form = PatrocinadoresForms()
     return render(request, "club/patrocinadores.html", {'form':form})
 
+@login_required
 def crearMobiliario(request):
     if request.method == "POST":
         form = MobiliarioForms(request.POST)
@@ -77,13 +85,37 @@ def listar_mobiliario(request):
     
     return render(request, "club/mobiliario_list.html", {"mobiliario": mobiliario, "query":query})
 
+@login_required
+def eliminar_jugador_confirmacion(request, dni):
+    jugador = get_object_or_404(Jugadores, dni=dni)
+    contexto = {
+        'object': jugador,
+        'dni': dni
+    }
+    return render(request, 'club/jugador_delete.html', contexto)
 
+
+# --- 2. VISTA DE ELIMINACIÓN (Ejecuta la acción) ---
+@login_required
 def eliminar_jugador(request, dni):
-    jugador = get_object_or_404(Jugadores, dni = dni) # Si existe más de uno o no existe, hay error
-    jugador.delete()
-    messages.success(request, f"El jugador con dni nro {dni} a sido eliminado correctamente")
-    return redirect('jugadores_list')
+    if request.method == 'POST':
+        jugador = get_object_or_404(Jugadores, dni=dni)
+        
+        # Ejecuta la eliminación
+        jugador.delete()
+        
+        messages.success(request, f"El jugador con DNI Nro {dni} ha sido eliminado correctamente.")
+        
+        # Redirige a la lista después de la eliminación
+        return redirect('jugadores_list')
     
+    # Si alguien intenta acceder a esta URL directamente con GET, lo redirigimos a la confirmación
+    return redirect('eliminar_jugador_confirmacion', dni=dni)
+
+
+
+
+@login_required
 def modificar_jugador(request, dni):
     jugador = get_object_or_404(Jugadores, dni = dni)
     if request.method == 'POST':
@@ -96,12 +128,36 @@ def modificar_jugador(request, dni):
         form = JugadoresFormsEdit(instance = jugador) # Puedo cambiar el formulario para restringir datos
     return render(request, "club/jugadores.html", {'form':form, 'edicion':True})
 
-def eliminar_patrocinador(request, numero_interno):
-    item = get_object_or_404(Patrocinadores, numero_interno = numero_interno) # Si existe más de uno o no existe, hay error
-    item.delete()
-    messages.success(request, f"El patrocinador con numero de interno {numero_interno} a sido eliminado correctamente")
-    return redirect('patrocinadores_list')
+#@login_required
+#def eliminar_patrocinador(request, numero_interno):
+#    item = get_object_or_404(Patrocinadores, numero_interno = numero_interno) # Si existe más de uno o no existe, hay error
+#    item.delete()
+#    messages.success(request, f"El patrocinador con numero de interno {numero_interno} a sido eliminado correctamente")
+#    return redirect('patrocinadores_list')
+
+@login_required
+def eliminar_patrocinador_confirmacion(request, numero_interno):
+    patrocinador = get_object_or_404(Patrocinadores, numero_interno=numero_interno)
     
+    contexto = {
+        'object': patrocinador,
+        'nombre_objeto': patrocinador.nombre, # Campo identificador para el template
+        'campo_identificador': numero_interno # Valor necesario para la URL de eliminación
+    }
+    return render(request, 'club/patrocinador_delete.html', contexto)
+
+@login_required
+def eliminar_patrocinador(request, numero_interno):
+    if request.method == 'POST':
+        patrocinador = get_object_or_404(Patrocinadores, numero_interno=numero_interno)
+        patrocinador.delete()
+        messages.success(request, f"El patrocinador '{patrocinador.nombre}' ha sido eliminado correctamente.")
+        return redirect('patrocinadores_list')
+    
+    # Si es GET, lo enviamos a la confirmación
+    return redirect('eliminar_patrocinador_confirmacion', numero_interno=numero_interno)
+    
+@login_required
 def modificar_patrocinador(request, numero_interno):
     item = get_object_or_404(Patrocinadores, numero_interno = numero_interno)
     if request.method == 'POST':
@@ -114,12 +170,28 @@ def modificar_patrocinador(request, numero_interno):
         form = PatrocinadoresFormsEdit(instance = item) # Puedo cambiar el formulario para restringir datos
     return render(request, "club/patrocinadores.html", {'form':form, 'edicion':True})
 
-def eliminar_item(request, numero_serie):
-    item = get_object_or_404(Mobiliario, numero_serie = numero_serie) # Si existe más de uno o no existe, hay error
-    item.delete()
-    messages.success(request, f"El item con numero de serie {numero_serie} a sido eliminado correctamente")
-    return redirect('mobiliario_list')
+@login_required
+def eliminar_mobiliario_confirmacion(request, numero_serie):
+    mobiliario = get_object_or_404(Mobiliario, numero_serie=numero_serie)
     
+    contexto = {
+        'object': mobiliario,
+        'nombre_objeto': mobiliario.nombre, 
+        'campo_identificador': numero_serie
+    }
+    return render(request, 'club/mobiliario_delete.html', contexto)
+
+@login_required
+def eliminar_mobiliario(request, numero_serie):
+    if request.method == 'POST':
+        mobiliario = get_object_or_404(Mobiliario, numero_serie=numero_serie)
+        mobiliario.delete()
+        messages.success(request, f"El mobiliario '{mobiliario.nombre}' ha sido eliminado correctamente.")
+        return redirect('mobiliario_list')
+    
+    return redirect('eliminar_mobiliario_confirmacion', numero_serie=numero_serie)
+
+@login_required  
 def modificar_item(request, numero_serie):
     item = get_object_or_404(Mobiliario, numero_serie = numero_serie)
     if request.method == 'POST':
@@ -132,21 +204,21 @@ def modificar_item(request, numero_serie):
         form = MobiliarioFormsEdit(instance = item) # Puedo cambiar el formulario para restringir datos
     return render(request, "club/mobiliarios.html", {'form':form, 'edicion':True})
 
-class JugadorDetailView(DetailView):
+class JugadorDetailView(LoginRequiredMixin, DetailView):
     model = Jugadores
     template_name = "club/jugador_detail.html"
     context_object_name = "jugador"
     slug_field = 'dni'
     slug_url_kwarg = 'dni'
     
-class PatrocinadorDetailView(DetailView):
+class PatrocinadorDetailView(LoginRequiredMixin, DetailView):
     model = Patrocinadores
     template_name = "club/patrocinador_detail.html"
     context_object_name = "patrocinador"
     slug_field = 'numero_interno'
     slug_url_kwarg = 'numero_interno'
     
-class MobiliarioDetailView(DetailView):
+class MobiliarioDetailView(LoginRequiredMixin, DetailView):
     model = Mobiliario
     template_name = "club/mobiliario_detail.html"
     context_object_name = "mobiliario"

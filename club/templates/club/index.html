@@ -6,7 +6,7 @@
     <title>{% block titulo %} Club Atlético San Lorenzo de Almagro {% endblock %}❤️💙</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" type="image/png" href="media/san-lorenzo.ico">
+    <link rel="icon" type="image/icon" href="../media/san-lorenzo.ico">
     <style>
         /* Definición de colores para mejor control */
         :root {
@@ -59,7 +59,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center"> <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href = {% url 'index' %}>🔴🔵Inicio</a>
+                        <a class="nav-link active text-white" aria-current="page" href = {% url 'index' %}>Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" aria-current="page" href={% url 'jugadores_list' %}>⚽ Jugadores</a>
@@ -74,9 +74,11 @@
                         <a class="nav-link text-white" href={% url 'canchas_list' %}>🥅 Canchas</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link text-white" href={% url 'medicos_list' %}>🩺 Medicos </a>
+                        <a class="nav-link text-white" href={% url 'medicos_list' %}>🩺 Medicos</a>
                     </li>
-                    
+                    <li class="nav-item me-3">
+                        <a class="nav-link text-white" href={% url 'about_me' %}>Acerca de mi</a>
+                    </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'profile_detail' %}">Perfil</a></li>
                         <li class="nav-item">
