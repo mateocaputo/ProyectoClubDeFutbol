@@ -1,6 +1,8 @@
 # ProyectoClubDeFutbol
 Simulo un club de futbol utilizando lenguajes como python, html, css entre otros.
 
+LINK VIDEO: 
+
 Para ejecutar el siguiente proyecto hay que seguir los siguientes pasos:
 
 1. Abrir una terminar en tu computadora y clonar el repositorio desde el siguente link tipo SSH: 

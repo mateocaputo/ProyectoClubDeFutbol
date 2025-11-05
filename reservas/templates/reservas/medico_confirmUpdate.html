@@ -1,0 +1,37 @@
+{% extends 'club/index.html' %} 
+
+{% block titulo %}Confirmar Modificación{% endblock %}
+
+{% block contenido %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card border-info">
+                    <div class="card-header bg-info text-white">
+                        <h4 class="mb-0">ℹ️ Confirmar Modificación</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            ¿Estás seguro que deseas <span class="badge bg-danger fs-6"> MODIFICAR </span> el registro del médico?
+                        </p>
+                        
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item"><strong>Nombre y Apellido:</strong> {{ object.nombre }} {{ medico.apellido }}</li>
+                            <li class="list-group-item"><strong>Especialidad:</strong> {{ object.especialidad }}</li>
+                            <li class="list-group-item"><strong>Code:</strong> {{ object.code }}</li>
+                        </ul>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'medicos_list' %}" class="btn btn-secondary">
+                                Cancelar
+                            </a>
+                            <a href="{% url 'medico_update' code %}" class="btn btn-info text-white">
+                                Sí, Modificar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock%}

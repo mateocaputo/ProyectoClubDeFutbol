@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from reservas.forms import * 
 from reservas.models import *
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-class CanchaListView(ListView):
+from django.contrib.auth.decorators import login_required
+
+class CanchaListView(LoginRequiredMixin, ListView):
     model = Cancha
     template_name = "reservas/canchas_list.html"
     context_object_name = 'canchas'
@@ -28,6 +30,15 @@ class CanchaUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('canchas_list')
     slug_field = 'code'
     slug_url_kwarg = 'code'
+
+@login_required
+def cancha_confirm(request, code):
+    cancha = get_object_or_404(Cancha, code = code)
+    contexto = {
+        'object': cancha,
+        'code': code
+    }
+    return render(request, 'reservas/cancha_confirmUpdate.html', contexto)
     
 class CanchaDeleteView(LoginRequiredMixin, DeleteView):
     model = Cancha
@@ -45,7 +56,7 @@ class CanchaDetailView(LoginRequiredMixin, DetailView):
 
 # ----------------------- MEDICOS -----------------------
 
-class MedicoListView(ListView):
+class MedicoListView(LoginRequiredMixin, ListView):
     model = Medico
     template_name = "reservas/medicos_list.html"
     context_object_name = 'medicos'
@@ -65,11 +76,20 @@ class MedicoCreateView(LoginRequiredMixin, CreateView):
 class MedicoUpdateView(LoginRequiredMixin, UpdateView):
     model = Medico
     form_class = MedicoFormEdit
-    template_name = "reservas/medico_form.html"
+    template_name = "reservas/medico_update.html"
     success_url = reverse_lazy('medicos_list')
     slug_field = 'code'
     slug_url_kwarg = 'code'
-    
+
+login_required
+def medico_confirm(request, code):
+    medico = get_object_or_404(Medico, code = code)
+    contexto = {
+        'object': medico,
+        'code': code
+    }
+    return render(request, 'reservas/medico_confirmUpdate.html', contexto)
+
 class MedicoDeleteView(LoginRequiredMixin, DeleteView):
     model = Medico
     template_name = "reservas/medico_delete.html"
