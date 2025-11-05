@@ -1,7 +1,7 @@
 # ProyectoClubDeFutbol
 Simulo un club de futbol utilizando lenguajes como python, html, css entre otros.
 
-LINK VIDEO: 
+LINK VIDEO: https://youtu.be/XMwx_H3ByIs
 
 Para ejecutar el siguiente proyecto hay que seguir los siguientes pasos:
 

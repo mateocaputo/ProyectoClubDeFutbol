@@ -17,7 +17,6 @@ class PerfilChangeForm(UserChangeForm):
         widgets = {
             "fecha_de_nacimiento": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             "direccion": forms.TextInput(attrs={'class': 'form-control'}),
-            "pais": forms.TextInput(attrs={'class': 'form-control'}),
             # El campo de archivo (FileField) usa 'form-control' por defecto o 'form-file' en versiones anteriores de Bootstrap
         }
         
